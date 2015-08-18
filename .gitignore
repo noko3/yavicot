@@ -1,0 +1,4 @@
+*.autosave
+*.user
+**/.DS_STORE
+/src/build*

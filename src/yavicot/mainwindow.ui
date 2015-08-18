@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>672</width>
-    <height>427</height>
+    <width>793</width>
+    <height>512</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -25,8 +25,8 @@
      <rect>
       <x>-1</x>
       <y>-1</y>
-      <width>671</width>
-      <height>361</height>
+      <width>791</width>
+      <height>451</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
@@ -42,12 +42,12 @@
         <attribute name="title">
          <string>Composer</string>
         </attribute>
-        <widget class="QWidget" name="">
+        <widget class="QWidget" name="layoutWidget">
          <property name="geometry">
           <rect>
-           <x>-3</x>
-           <y>3</y>
-           <width>331</width>
+           <x>20</x>
+           <y>40</y>
+           <width>345</width>
            <height>301</height>
           </rect>
          </property>
@@ -122,8 +122,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>672</width>
-     <height>19</height>
+     <width>793</width>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="mFile">
@@ -132,7 +132,7 @@
     </property>
     <addaction name="mFileImportVideo"/>
     <addaction name="mFileImportAudio"/>
-    <addaction name="action"/>
+    <addaction name="mFileAddSubs"/>
     <addaction name="mFileExport"/>
     <addaction name="separator"/>
     <addaction name="mFileQuit"/>
@@ -202,7 +202,7 @@
     <string>&amp;About</string>
    </property>
   </action>
-  <action name="action">
+  <action name="mFileAddSubs">
    <property name="text">
     <string>Add &amp;subtitles</string>
    </property>
@@ -221,5 +221,141 @@
   <tabstop>treeChannelMapping</tabstop>
  </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>mFileImportAudio</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>AddAudioTrackSlot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>396</x>
+     <y>255</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnImportAudio</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>AddAudioTrackSlot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>489</x>
+     <y>231</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>396</x>
+     <y>255</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>mFileImportVideo</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>AddVideoTrackSlot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>396</x>
+     <y>255</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnImportVideo</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>AddVideoTrackSlot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>615</x>
+     <y>231</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>396</x>
+     <y>255</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>mFileAddSubs</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>AddSubtitlesSlot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>396</x>
+     <y>255</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>mFileQuit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>396</x>
+     <y>255</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>mHelpAbout</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>AboutSlot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>396</x>
+     <y>255</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>mFileExport</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>RenderExportSlot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>396</x>
+     <y>255</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>AddAudioTrackSlot()</slot>
+  <slot>AddVideoTrackSlot()</slot>
+  <slot>AddSubtitlesSlot()</slot>
+  <slot>RenderExportSlot()</slot>
+  <slot>AboutSlot()</slot>
+ </slots>
 </ui>
