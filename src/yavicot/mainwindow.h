@@ -3,6 +3,10 @@
 
 #include <QMainWindow>
 #include <QObject>
+#include <QMessageBox>
+#include <QFileDialog>
+
+#include "Model/appmodel.h"
 
 namespace Ui {
 class MainWindow;
@@ -16,13 +20,13 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-private slots:
-    void ImportVideoTrackSlot();
-    void ImportAudioTrackSlot();
-    void ImportSubtitlesSlot();
+public slots:
+    void AddVideoTrackSlot();
+    void AddAudioTrackSlot();
+    void AddSubtitlesSlot();
     void RenderSlot();
+    void AboutSlot();
     void QuitSlot();
-    void on_mFileImportVideo_triggered();
 
 private:
     Ui::MainWindow *ui;

@@ -130,8 +130,8 @@
     <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="mFileImportVideo"/>
-    <addaction name="mFileImportAudio"/>
+    <addaction name="mFileAddVideo"/>
+    <addaction name="mFileAddAudio"/>
     <addaction name="mFileAddSubs"/>
     <addaction name="mFileExport"/>
     <addaction name="separator"/>
@@ -154,6 +154,7 @@
    <addaction name="mSettings"/>
    <addaction name="mHelp"/>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -162,18 +163,20 @@
     <bool>false</bool>
    </attribute>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
-  <action name="mFileImportVideo">
+  <action name="mFileAddVideo">
    <property name="text">
     <string>Import &amp;video</string>
    </property>
+   <property name="toolTip">
+    <string>Add a video track</string>
+   </property>
   </action>
-  <action name="mFileImportAudio">
+  <action name="mFileAddAudio">
    <property name="text">
     <string>Import &amp;audio track(s)</string>
    </property>
    <property name="toolTip">
-    <string>Добавить аудиодорожку в проект</string>
+    <string>Add an audio track</string>
    </property>
   </action>
   <action name="mFileExport">
@@ -181,7 +184,7 @@
     <string>&amp;Export...</string>
    </property>
    <property name="toolTip">
-    <string>Сохранить видео и аудио в новый файл</string>
+    <string>Render the project and export the result</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -190,6 +193,9 @@
   <action name="mFileQuit">
    <property name="text">
     <string>Quit</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::QuitRole</enum>
    </property>
   </action>
   <action name="mSettingsEditPresets">
@@ -200,6 +206,9 @@
   <action name="mHelpAbout">
    <property name="text">
     <string>&amp;About</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::AboutRole</enum>
    </property>
   </action>
   <action name="mFileAddSubs">
@@ -223,7 +232,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>mFileImportAudio</sender>
+   <sender>mFileAddAudio</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>AddAudioTrackSlot()</slot>
@@ -255,7 +264,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>mFileImportVideo</sender>
+   <sender>mFileAddVideo</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>AddVideoTrackSlot()</slot>

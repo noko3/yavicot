@@ -9,6 +9,7 @@ class Metadata
     int _nPackedItems;
   public:
     bool IsContainer();
+    int ItemsCount();
     QString ProbeInfo;
 
     Metadata();

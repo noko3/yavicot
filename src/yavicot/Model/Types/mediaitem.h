@@ -5,16 +5,14 @@
 #include <QMimeType>
 #include <QList>
 #include "metadata.h"
+#include "itemtype.h"
 
-class MediaItem {
-public:
+struct MediaItem {
+    MediaItemType type;
     QString filename;
-    QMimeType filetype;
+    QMimeType mimetype;
     Metadata meta;
     QList<MediaItem> contents;
-
-    MediaItem();
-    ~MediaItem();
 };
 
 #endif // MEDIAITEM

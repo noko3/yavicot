@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     Model/Types/audiotrackmetadata.cpp \
     Model/Types/videotrackmetadata.cpp \
     Model/Types/subtitlesmetadata.cpp \
-    Model/Types/containermetadata.cpp
+    Model/Types/containermetadata.cpp \
+    Model/appmodel.cpp
 
 HEADERS  += mainwindow.h \
     Model/fsmodel.h \
@@ -28,6 +29,9 @@ HEADERS  += mainwindow.h \
     Model/Types/audiotrackmetadata.h \
     Model/Types/videotrackmetadata.h \
     Model/Types/subtitlesmetadata.h \
-    Model/Types/containermetadata.h
+    Model/Types/containermetadata.h \
+    Model/appmodel.h \
+    Model/Types/project.h \
+    Model/Types/itemtype.h
 
 FORMS    += mainwindow.ui
