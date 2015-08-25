@@ -2,8 +2,9 @@
 #define METADATA_H
 
 #include <QString>
+#include "../Interfaces/idomserializable.h"
 
-class Metadata
+class Metadata : public IDomSerializable
 {
   private:
     int _nPackedItems;
@@ -14,6 +15,10 @@ class Metadata
 
     Metadata();
     ~Metadata();
+
+    // IDomSerializable interface
+    QDomElement &Serialize(QDomDocument &doc);
+    Metadata &Deserialize(QDomElement &self);
 };
 
 #endif // METADATA_H

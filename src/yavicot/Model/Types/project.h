@@ -3,28 +3,29 @@
 
 #include <QList>
 #include <QString>
+#include <map>
+#include <stdexcept>
+#include "../Interfaces/idomserializable.h"
 #include "mediaitem.h"
+#include "renderoptions.h"
 
-//#include <libxml/encoding.h>
-//#include <libxml/xmlwriter.h>
-
-struct Project {
+class Project : public IDomSerializable {
+  private:
+    enum ElementType : int;
+    static std::map<QString, ElementType> _elementName;
+  public:
     QString Name;
     QString Comment;
     // ProjectSettings Settings;
-    QList<MediaItem> AudioFiles;
-    QList<MediaItem> VideoFiles;
-    QList<MediaItem> Subtitles;
+    QList<MediaItem> MediaItems;
+    QList<RenderOptions> Renderers;
 
     Project& Empty() {
         Project *tmp = new Project();
-        tmp->Name = "New project";
+        tmp->Name = tr("New project");
         tmp->Comment = "";
         return *tmp;
     }
-    
-    int Save(QString filename);
-    static Project& Load(QString filename, int &err);
 };
 
 #endif // PROJECT_H

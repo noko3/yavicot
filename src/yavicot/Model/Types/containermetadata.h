@@ -11,8 +11,8 @@ public:
     ContainerMetadata();
 
     QString MuxerName;
-    int nChildren;
-    QList<Metadata> childrenMeta;
+    //int nChildren;
+    //QList<Metadata> childrenMeta;
 };
 
 #endif // CONTAINERMETADATA_H
