@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>793</width>
-    <height>512</height>
+    <width>795</width>
+    <height>493</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -58,21 +58,14 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
-             <widget class="QPushButton" name="btnImportAudio">
+             <widget class="QPushButton" name="btnAddMedia">
               <property name="text">
-               <string>Import audio</string>
+               <string>Add media</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="btnImportVideo">
-              <property name="text">
-               <string>Import video</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="btnRemove">
+             <widget class="QPushButton" name="btnRemoveMedia">
               <property name="text">
                <string>Remove</string>
               </property>
@@ -122,18 +115,21 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>793</width>
-     <height>22</height>
+     <width>795</width>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="mFile">
     <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="mFileAddVideo"/>
-    <addaction name="mFileAddAudio"/>
-    <addaction name="mFileAddSubs"/>
-    <addaction name="mFileExport"/>
+    <addaction name="mFileAddMedia"/>
+    <addaction name="separator"/>
+    <addaction name="mFileNewProject"/>
+    <addaction name="mFileOpenProject"/>
+    <addaction name="mFileSaveProject"/>
+    <addaction name="mFileSaveProjectAs"/>
+    <addaction name="mFileRender"/>
     <addaction name="separator"/>
     <addaction name="mFileQuit"/>
    </widget>
@@ -163,12 +159,15 @@
     <bool>false</bool>
    </attribute>
   </widget>
-  <action name="mFileAddVideo">
+  <action name="mFileAddMedia">
    <property name="text">
-    <string>Import &amp;video</string>
+    <string>Add &amp;media files...</string>
    </property>
    <property name="toolTip">
-    <string>Add a video track</string>
+    <string>Add video sequences, audio tracks or subtitles</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+I</string>
    </property>
   </action>
   <action name="mFileAddAudio">
@@ -179,20 +178,23 @@
     <string>Add an audio track</string>
    </property>
   </action>
-  <action name="mFileExport">
+  <action name="mFileRender">
    <property name="text">
-    <string>&amp;Export...</string>
+    <string>&amp;Render project...</string>
    </property>
    <property name="toolTip">
     <string>Render the project and export the result</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+S</string>
+    <string>Ctrl+E</string>
    </property>
   </action>
   <action name="mFileQuit">
    <property name="text">
     <string>Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
    </property>
    <property name="menuRole">
     <enum>QAction::QuitRole</enum>
@@ -216,6 +218,38 @@
     <string>Add &amp;subtitles</string>
    </property>
   </action>
+  <action name="mFileOpenProject">
+   <property name="text">
+    <string>&amp;Open project...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="mFileSaveProject">
+   <property name="text">
+    <string>&amp;Save project</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="mFileSaveProjectAs">
+   <property name="text">
+    <string>Save project &amp;as...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="mFileNewProject">
+   <property name="text">
+    <string>&amp;New project</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
@@ -223,35 +257,18 @@
   <tabstop>horizontalSlider</tabstop>
   <tabstop>tabWidget</tabstop>
   <tabstop>treeProjectFiles</tabstop>
-  <tabstop>btnImportAudio</tabstop>
-  <tabstop>btnImportVideo</tabstop>
-  <tabstop>btnRemove</tabstop>
+  <tabstop>btnAddMedia</tabstop>
+  <tabstop>btnRemoveMedia</tabstop>
   <tabstop>cboxPreset</tabstop>
   <tabstop>treeChannelMapping</tabstop>
  </tabstops>
  <resources/>
  <connections>
   <connection>
-   <sender>mFileAddAudio</sender>
+   <sender>mFileOpenProject</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>AddAudioTrackSlot()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>396</x>
-     <y>255</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>btnImportAudio</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>AddAudioTrackSlot()</slot>
+   <slot>LoadProjectSlot()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>489</x>
@@ -264,42 +281,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>mFileAddVideo</sender>
+   <sender>mFileAddMedia</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>AddVideoTrackSlot()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>396</x>
-     <y>255</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>btnImportVideo</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>AddVideoTrackSlot()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>615</x>
-     <y>231</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>396</x>
-     <y>255</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>mFileAddSubs</sender>
-   <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>AddSubtitlesSlot()</slot>
+   <slot>AddMediaSlot()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -344,10 +329,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>mFileExport</sender>
+   <sender>mFileRender</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>RenderExportSlot()</slot>
+   <slot>RenderSlot()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -359,12 +344,96 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>btnAddMedia</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>AddMediaSlot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>505</x>
+     <y>236</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>397</x>
+     <y>246</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnRemoveMedia</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>RemoveMediaSlot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>679</x>
+     <y>236</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>397</x>
+     <y>246</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>mFileNewProject</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>CreateNewProjectSlot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>397</x>
+     <y>246</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>mFileSaveProject</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>SaveProjectSlot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>397</x>
+     <y>246</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>mFileSaveProjectAs</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>RemoveMediaSlot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>397</x>
+     <y>246</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
-  <slot>AddAudioTrackSlot()</slot>
-  <slot>AddVideoTrackSlot()</slot>
-  <slot>AddSubtitlesSlot()</slot>
-  <slot>RenderExportSlot()</slot>
   <slot>AboutSlot()</slot>
+  <slot>AddMediaSlot()</slot>
+  <slot>LoadProjectSlot()</slot>
+  <slot>SaveProjectSlot()</slot>
+  <slot>SaveProjectAsSlot()</slot>
+  <slot>CreateNewProjectSlot()</slot>
+  <slot>SelectMediaSlot()</slot>
+  <slot>RemoveMediaSlot()</slot>
+  <slot>RenderSlot()</slot>
  </slots>
 </ui>

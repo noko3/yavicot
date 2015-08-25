@@ -5,8 +5,8 @@
 #include <QString>
 #include "mediaitem.h"
 
-#include <libxml/encoding.h>
-#include <libxml/xmlwriter.h>
+//#include <libxml/encoding.h>
+//#include <libxml/xmlwriter.h>
 
 struct Project {
     QString Name;

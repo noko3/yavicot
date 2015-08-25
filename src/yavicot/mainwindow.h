@@ -5,9 +5,7 @@
 #include <QObject>
 #include <QMessageBox>
 #include <QFileDialog>
-
 #include "Model/appmodel.h"
-
 #include "strings.h"
 
 namespace Ui {
@@ -23,13 +21,15 @@ public:
     ~MainWindow();
 
 public slots:
-    void AddVideoTrackSlot();
-    void AddAudioTrackSlot();
-    void AddSubtitlesSlot();
+    void AddMediaSlot();
+    void RemoveMediaSlot();
+    void SelectMediaSlot();
     void RenderSlot();
     void AboutSlot();
-    void QuitSlot();
-
+    void CreateNewProjectSlot();
+    void SaveProjectSlot();
+    void LoadProjectSlot();
+    void SaveProjectAsSlot();
 private:
     Ui::MainWindow *ui;
 };

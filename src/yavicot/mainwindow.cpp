@@ -14,7 +14,7 @@ MainWindow::~MainWindow()
 }
 
 // TODO exception handling
-void MainWindow::AddVideoTrackSlot()
+void MainWindow::AddMediaSlot()
 {
     QFileDialog openFileDialog(this);
     openFileDialog.setFileMode(QFileDialog::ExistingFiles);
@@ -38,14 +38,14 @@ void MainWindow::AddVideoTrackSlot()
                                  QMessageBox::Ok);
 }
 
-void MainWindow::AddAudioTrackSlot()
+void MainWindow::RemoveMediaSlot()
 {
-	// no need to
+
 }
 
-void MainWindow::AddSubtitlesSlot()
+void MainWindow::SelectMediaSlot()
 {
-	// no need to
+
 }
 
 void MainWindow::RenderSlot()
@@ -58,15 +58,25 @@ void MainWindow::AboutSlot()
 
 }
 
+void MainWindow::CreateNewProjectSlot()
+{
+
+}
+
 void MainWindow::SaveProjectSlot()
 {
-	QFileDialog openFileDialog(this);
-    openFileDialog.setFileMode(QFileDialog::AnyFile);
-    openFileDialog.setNameFilter(tr( Y_YPRO_FTYPE ));
-    openFileDialog.setViewMode(QFileDialog::Detail);
-    QStringList filenames, errors;
-    if (openFileDialog.exec())
-        filenames = openFileDialog.selectedFiles();
+
+}
+
+void MainWindow::SaveProjectAsSlot()
+{
+    QFileDialog saveFileDialog(this);
+    saveFileDialog.setFileMode(QFileDialog::AnyFile);
+    saveFileDialog.setNameFilter(tr( Y_YPRO_FTYPE ));
+    saveFileDialog.setViewMode(QFileDialog::Detail);
+    QStringList filenames;
+    if (saveFileDialog.exec())
+        filenames = saveFileDialog.selectedFiles();
 }
 
 void MainWindow::LoadProjectSlot()
@@ -81,15 +91,10 @@ void MainWindow::LoadProjectSlot()
 
     foreach (QString fname, filenames) {
         //try {
-            App->AddFileToProject(fname);
+            App->LoadProject(fname);
         //} catch () {
         //    errors.append(fname);
         //    continue;
         //}
     }
-}
-
-void MainWindow::QuitSlot()
-{
-	// no need to
 }

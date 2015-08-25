@@ -20,9 +20,11 @@ SOURCES += main.cpp\
     Model/Types/videotrackmetadata.cpp \
     Model/Types/subtitlesmetadata.cpp \
     Model/Types/containermetadata.cpp \
-    Model/appmodel.cpp
+    Model/appmodel.cpp \
+    Model/Types/project.cpp
 
 HEADERS  += mainwindow.h \
+    strings.h \
     Model/fsmodel.h \
     Model/Types/metadata.h \
     Model/Types/mediaitem.h \

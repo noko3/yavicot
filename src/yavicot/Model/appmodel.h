@@ -4,8 +4,12 @@
 #include <QObject>
 #include <QString>
 #include <QList>
+#include <QMimeType>
+#include <QMimeDatabase>
 #include "Types/mediaitem.h"
 #include "Types/project.h"
+
+#include <QDebug>
 
 class AppModel: public QObject
 {
