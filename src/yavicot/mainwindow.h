@@ -8,6 +8,8 @@
 
 #include "Model/appmodel.h"
 
+#include "strings.h"
+
 namespace Ui {
 class MainWindow;
 }

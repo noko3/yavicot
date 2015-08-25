@@ -18,12 +18,7 @@ void MainWindow::AddVideoTrackSlot()
 {
     QFileDialog openFileDialog(this);
     openFileDialog.setFileMode(QFileDialog::ExistingFiles);
-    openFileDialog.setNameFilter(tr(
-        "Video files (*.mp4, *.m4v, *.mov);;"
-        "Audio files (*.wav, *.pcm, *.aac, *.flac);;"
-        "Subtitles (*.srt, *.ass);;"
-        "All files (*.*)"
-        ));
+    openFileDialog.setNameFilter(tr( Y_PROJ_FTYPES ));
     openFileDialog.setViewMode(QFileDialog::Detail);
     QStringList filenames, errors;
     if (openFileDialog.exec())
@@ -45,12 +40,12 @@ void MainWindow::AddVideoTrackSlot()
 
 void MainWindow::AddAudioTrackSlot()
 {
-
+	// no need to
 }
 
 void MainWindow::AddSubtitlesSlot()
 {
-
+	// no need to
 }
 
 void MainWindow::RenderSlot()
@@ -63,7 +58,38 @@ void MainWindow::AboutSlot()
 
 }
 
+void MainWindow::SaveProjectSlot()
+{
+	QFileDialog openFileDialog(this);
+    openFileDialog.setFileMode(QFileDialog::AnyFile);
+    openFileDialog.setNameFilter(tr( Y_YPRO_FTYPE ));
+    openFileDialog.setViewMode(QFileDialog::Detail);
+    QStringList filenames, errors;
+    if (openFileDialog.exec())
+        filenames = openFileDialog.selectedFiles();
+}
+
+void MainWindow::LoadProjectSlot()
+{
+	QFileDialog openFileDialog(this);
+    openFileDialog.setFileMode(QFileDialog::ExistingFile);
+    openFileDialog.setNameFilter(tr( Y_YPRO_FTYPE ));
+    openFileDialog.setViewMode(QFileDialog::Detail);
+    QStringList filenames, errors;
+    if (openFileDialog.exec())
+        filenames = openFileDialog.selectedFiles();
+
+    foreach (QString fname, filenames) {
+        //try {
+            App->AddFileToProject(fname);
+        //} catch () {
+        //    errors.append(fname);
+        //    continue;
+        //}
+    }
+}
+
 void MainWindow::QuitSlot()
 {
-
+	// no need to
 }

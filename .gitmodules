@@ -1,3 +1,6 @@
 [submodule "src/deps/ffmpeg"]
 	path = src/deps/ffmpeg
 	url = git://source.ffmpeg.org/ffmpeg.git
+[submodule "src/deps/libxml2"]
+	path = src/deps/libxml2
+	url = https://github.com/ConradIrwin/libxml2.git

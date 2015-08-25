@@ -5,6 +5,9 @@
 #include <QString>
 #include "mediaitem.h"
 
+#include <libxml/encoding.h>
+#include <libxml/xmlwriter.h>
+
 struct Project {
     QString Name;
     QString Comment;
@@ -19,6 +22,9 @@ struct Project {
         tmp->Comment = "";
         return *tmp;
     }
+    
+    int Save(QString filename);
+    static Project& Load(QString filename, int &err);
 };
 
 #endif // PROJECT_H
