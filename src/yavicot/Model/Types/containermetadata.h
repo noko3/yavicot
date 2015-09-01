@@ -7,12 +7,21 @@
 
 class ContainerMetadata : public Metadata
 {
-public:
-    ContainerMetadata();
+    Q_OBJECT
+    Q_PROPERTY(QString MuxerName READ MuxerName WRITE setMuxerName)
+    QString m_MuxerName;
 
-    QString MuxerName;
-    //int nChildren;
-    //QList<Metadata> childrenMeta;
+public:
+    ContainerMetadata() : Metadata() {};
+    QString MuxerName() const
+    {
+        return m_MuxerName;
+    }
+public slots:
+    void setMuxerName(QString MuxerName)
+    {
+        m_MuxerName = MuxerName;
+    }
 };
 
 #endif // CONTAINERMETADATA_H

@@ -70,13 +70,18 @@ void MainWindow::SaveProjectSlot()
 
 void MainWindow::SaveProjectAsSlot()
 {
-    QFileDialog saveFileDialog(this);
-    saveFileDialog.setFileMode(QFileDialog::AnyFile);
-    saveFileDialog.setNameFilter(tr( Y_YPRO_FTYPE ));
-    saveFileDialog.setViewMode(QFileDialog::Detail);
-    QStringList filenames;
-    if (saveFileDialog.exec())
-        filenames = saveFileDialog.selectedFiles();
+//    QFileDialog saveFileDialog(this);
+//    saveFileDialog.setAcceptMode(QFileDialog::AcceptSave);
+//    saveFileDialog.setFileMode(QFileDialog::AnyFile);
+//    saveFileDialog.setNameFilter(tr( Y_YPRO_FTYPE ));
+//    saveFileDialog.setViewMode(QFileDialog::Detail);
+//    QStringList filenames;
+//    if (saveFileDialog.exec())
+//        filenames = saveFileDialog.selectedFiles();
+
+    QString filename = QFileDialog::getSaveFileName(this, tr("Save project"),
+        ".", tr(Y_YPRO_FTYPE));
+    App->SaveProject(filename);
 }
 
 void MainWindow::LoadProjectSlot()

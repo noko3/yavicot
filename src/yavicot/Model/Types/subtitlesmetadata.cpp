@@ -1,7 +1,7 @@
 #include "subtitlesmetadata.h"
 
-SubtitlesMetadata::SubtitlesMetadata()
+SubtitlesMetadata::SubtitlesMetadata(QObject *parent)
 {
-
+    return;
 }
 

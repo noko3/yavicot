@@ -4,10 +4,13 @@
 #include <QObject>
 #include <QString>
 #include <QList>
+#include <QFile>
 #include <QMimeType>
 #include <QMimeDatabase>
 #include "Types/mediaitem.h"
 #include "Types/project.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 #include <QDebug>
 
@@ -16,9 +19,8 @@ class AppModel: public QObject
     Q_OBJECT
 private:
     QString _activeProjectFilename;
-    Project _project;
+    Project *_project;
     static AppModel *_instance;
-
 
     AppModel();
     //~AppModel();

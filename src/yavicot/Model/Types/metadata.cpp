@@ -1,22 +1,6 @@
 #include "metadata.h"
 
-Metadata::Metadata() {
-
-}
-
-Metadata::~Metadata() {
-
-}
-
-bool Metadata::IsContainer() {
-    return false;
-}
-
-
-QDomElement &Metadata::Serialize(QDomDocument &doc)
+Metadata::Metadata(QObject *parent)
 {
-}
-
-IDomSerializable &Metadata::Deserialize(QDomElement &self)
-{
+    //this->setParent(parent);
 }

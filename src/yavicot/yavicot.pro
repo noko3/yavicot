@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     Model/appmodel.cpp \
     Model/Types/project.cpp \
     Model/Types/renderoptions.cpp \
-    Model/Types/mediaitem.cpp
+    Model/Types/mediaitem.cpp \
+    Model/Interfaces/idomserializable.cpp
 
 HEADERS  += mainwindow.h \
     strings.h \
@@ -37,7 +38,6 @@ HEADERS  += mainwindow.h \
     Model/appmodel.h \
     Model/Types/project.h \
     Model/Types/itemtype.h \
-    Model/Interfaces/ixmlserializable.h \
     Model/Types/renderoptions.h \
     Model/Interfaces/idomserializable.h
 

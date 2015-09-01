@@ -6,6 +6,7 @@ AppModel::AppModel()
 {
     //this->_project = Project::Empty();
     this->_activeProjectFilename = "";
+    this->_project = new Project();
 }
 
 AppModel *AppModel::Instance()
@@ -37,12 +38,34 @@ void AppModel::LoadProject(QString filename)
 {
     qDebug() << __FILE__ << " at " << __LINE__;
     qDebug() << "---- LoadProject( " << filename << " );";
+
+    QFile fp(filename);
+    if (!fp.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug() << "---- unable to open" << filename;
+        return;
+    }
+    QString str = fp.readAll();
+
+    _project = XMLSerializer::Deserialize<Project>(str);
+    qDebug() << "---- Project.Name == \"" << _project->Name() << "\"";
+    qDebug() << "---- Project.Comment == \"" << _project->Comment() << "\"";
+
+    fp.close();
 }
 
 void AppModel::SaveProject(QString filename)
 {
     qDebug() << __FILE__ << " at " << __LINE__;
     qDebug() << "---- SaveProject( " << filename << " );";
+
+    QString str;
+    FILE *fp = fopen(filename.toStdString().c_str(), "w");
+    QTextStream *ds = new QTextStream(fp);
+    qDebug() << "---- Created QTextStream, will now serialize";
+    bool x = XMLSerializer::Serialize(AppModel::Instance()->_project, ds, NULL);
+    fclose(fp);
+    qDebug() << "---- ::" << x;
+    delete ds;
 }
 
 void AppModel::RenderProject(QString filename)
