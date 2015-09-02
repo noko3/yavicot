@@ -3,6 +3,7 @@
 
 #include <QDomDocument>
 #include <QMetaProperty>
+#include <QTextStream>
 #include <QObject>
 
 /*!
@@ -17,7 +18,7 @@ public:
      * \param doc Root document
      * \return Link to a serialized DOM element
      */
-    static bool Serialize(QObject *o, QTextStream *ds, QDomElement *pRoot);
+    static QString Serialize(QObject *o);
 
     /*!
      * \brief Deserialize virtual method

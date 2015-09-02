@@ -38,7 +38,7 @@ class Project : public QObject {
 
     QString m_Name;
     QString m_Comment;
-//    QList<MediaItem*> m_MediaItems;
+    QList<MediaItem*> m_MediaItems;
 //    QList<RenderOptions*> m_Renderers;
 
 public:
@@ -58,10 +58,10 @@ public:
         return m_Comment;
     }
 
-//    QList<MediaItem*> MediaItems() const
-//    {
-//        return m_MediaItems;
-//    }
+    QList<MediaItem*> MediaItems() const
+    {
+        return m_MediaItems;
+    }
 
 //    QList<RenderOptions*> Renderers() const
 //    {
@@ -86,14 +86,14 @@ public slots:
         emit CommentChanged(Comment);
     }
 
-//    void setMediaItems(QList<MediaItem*> MediaItems)
-//    {
-//        if (m_MediaItems == MediaItems)
-//            return;
+    void setMediaItems(QList<MediaItem*> MediaItems)
+    {
+        if (m_MediaItems == MediaItems)
+            return;
 
-//        m_MediaItems = MediaItems;
-//        emit MediaItemsChanged(MediaItems);
-//    }
+        m_MediaItems = MediaItems;
+        emit MediaItemsChanged(MediaItems);
+    }
 
 //    void setRenderers(QList<RenderOptions*> Renderers)
 //    {
@@ -107,7 +107,7 @@ public slots:
 signals:
     void NameChanged(QString Name);
     void CommentChanged(QString Comment);
-//    void MediaItemsChanged(QList<MediaItem*> MediaItems);
+    void MediaItemsChanged(QList<MediaItem*> MediaItems);
 //    void RenderersChanged(QList<RenderOptions*> Renderers);
 };
 

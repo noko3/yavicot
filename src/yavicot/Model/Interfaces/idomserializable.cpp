@@ -1,18 +1,14 @@
 #include "idomserializable.h"
 
 // TODO: add recursion
-bool XMLSerializer::Serialize(QObject *o, QTextStream *ds,
-                                 QDomElement *pRoot)
+QString XMLSerializer::Serialize(QObject *o)
 {
-    if (ds == NULL || o == NULL)
-        return false;
+    if (o == NULL)
+        return "";
 
     QDomDocument doc;
     QDomElement root = doc.createElement(o->metaObject()->className());
-    if (pRoot != NULL)
-        ((QDomElement)*pRoot).appendChild(root);
-    else
-        doc.appendChild(root);
+    doc.appendChild(root);
 
     for (int i=0; i<o->metaObject()->propertyCount(); i++)
     {
@@ -27,11 +23,12 @@ bool XMLSerializer::Serialize(QObject *o, QTextStream *ds,
         root.appendChild(el);
     }
 
+    QString tmp;
+    QTextStream *str = new QTextStream(&tmp);
+    doc.save(*str, 4);
+    delete str;
 
-
-    doc.save(*ds, 2);
-
-    return true;
+    return tmp;
 }
 
 

@@ -26,7 +26,8 @@ void MainWindow::AddMediaSlot()
 
     foreach (QString fname, filenames) {
         //try {
-            App->AddFileToProject(fname);
+            int F = App->AddFileToProject(fname);
+            qDebug() << F;
         //} catch () {
         //    errors.append(fname);
         //    continue;

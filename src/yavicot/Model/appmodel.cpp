@@ -26,7 +26,12 @@ int AppModel::AddFileToProject(QString filename)
     qDebug() << "---- AddFileToProject( " << filename << " );";
     qDebug() << "---- Mime type: " << mime << "\n";
 
-    return 0;
+    MediaItem *media = new MediaItem();
+    media->setFilename(filename);
+    media->setMimeType(mime);
+    this->_project->MediaItems().append(media);
+
+    return this->_project->MediaItems().count() - 1;
 }
 
 void AppModel::RemoveFileFromProject(int itemId)
@@ -58,14 +63,16 @@ void AppModel::SaveProject(QString filename)
     qDebug() << __FILE__ << " at " << __LINE__;
     qDebug() << "---- SaveProject( " << filename << " );";
 
-    QString str;
-    FILE *fp = fopen(filename.toStdString().c_str(), "w");
-    QTextStream *ds = new QTextStream(fp);
-    qDebug() << "---- Created QTextStream, will now serialize";
-    bool x = XMLSerializer::Serialize(AppModel::Instance()->_project, ds, NULL);
-    fclose(fp);
-    qDebug() << "---- ::" << x;
-    delete ds;
+    QString str = XMLSerializer::Serialize(AppModel::Instance()->_project);
+    QFile fp(filename);
+    if (!fp.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qDebug() << "---- unable to open" << filename;
+        return;
+    }
+    fp.write(str.toStdString().c_str());
+    fp.close();
+    qDebug() << "---- ::" << str;
+    //delete str;
 }
 
 void AppModel::RenderProject(QString filename)
